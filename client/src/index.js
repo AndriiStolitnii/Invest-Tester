@@ -117,6 +117,27 @@ class Portfolio {
         })
     }
 }
+const gold = new Tool('commodities', `Gold`);
+gold.makePrices();
+const silver = new Tool('commodities', `Silver`);
+silver.makePrices();
+const sAndP500 = new Tool('indices', `S&P500`);
+sAndP500.makePrices();
+const dowJones = new Tool('indices', `DowJones`);
+dowJones.makePrices();
+const dax = new Tool('indeces', `DAX`);
+dax.makePrices();
+const ftse100 = new Tool('indeces', `FTSE100`);
+ftse100.makePrices();
+const google = new Tool('stocks', `Google`);
+google.makePrices();
+const facebook = new Tool('stocks', `Facebook`);
+facebook.makePrices();
+const adobe = new Tool('stocks', `Adobe`);
+adobe.makePrices();
+const oracle = new Tool('stocks', `Oracle`);
+oracle.makePrices();
+
 gold.datesOfPrices = [
     "Jan 19, 2020", "Jan 12, 2020", "Jan 05, 2020", "Dec 29, 2019", "Dec 22, 2019", "Dec 15, 2019",
     "Dec 08, 2019", "Dec 01, 2019", "Nov 24, 2019", "Nov 17, 2019", "Nov 10, 2019", "Nov 03, 2019",
@@ -841,29 +862,7 @@ oracle.pricesWithoutDate = [
     "40.36", "41.16", "40.97", "41.48", "38.95", "37.89", "36.96", "36.78", "35.54", "35.70", "36.31",
     "34.80", "34.12", "34.65"
 ];
-const gold = new Tool('commodities', `Gold`);
-gold.makePrices();
-const silver = new Tool('commodities', `Silver`);
-silver.makePrices();
-const sAndP500 = new Tool('indices', `S&P500`);
-sAndP500.makePrices();
-const dowJones = new Tool('indices', `DowJones`);
-dowJones.makePrices();
-const dax = new Tool('indeces', `DAX`);
-dax.makePrices();
-const ftse100 = new Tool('indeces', `FTSE100`);
-ftse100.makePrices();
-const google = new Tool('stocks', `Google`);
-google.makePrices();
-const facebook = new Tool('stocks', `Facebook`);
 
-facebook.makePrices();
-const adobe = new Tool('stocks', `Adobe`);
-
-adobe.makePrices();
-const oracle = new Tool('stocks', `Oracle`);
-
-oracle.makePrices();
 const tools = [gold, dowJones, sAndP500, ftse100, dax, facebook, google, oracle, adobe];
 const weights = [10, 25, 25, 10, 10, 5, 5, 5, 5];
 const myPortfolio = new Portfolio(tools, weights);
