@@ -1,3 +1,6 @@
+let Chart = require('chart.js');
+let ctx = document.getElementById('myChart').getContext('2d');
+
 const body = document.getElementsByTagName(`body`)[0];
 const form = document.createElement(`form`);
 body.appendChild(form);
@@ -114,6 +117,42 @@ class Portfolio {
         scale(this.maxProfitScenario);
         this.testItems.forEach((el) => {
             this.drawdownItems.push((((Math.min(...el))-el[0])/el[0]*100).toFixed(2));
+        });
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: myPortfolio.averageScenario.map((el, i) => i),
+                datasets: [{
+                    label: 'average scenario (%)',
+                    data: myPortfolio.averageScenario,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         })
     }
 }
@@ -125,9 +164,9 @@ const sAndP500 = new Tool('indices', `S&P500`);
 sAndP500.makePrices();
 const dowJones = new Tool('indices', `DowJones`);
 dowJones.makePrices();
-const dax = new Tool('indeces', `DAX`);
+const dax = new Tool('indices', `DAX`);
 dax.makePrices();
-const ftse100 = new Tool('indeces', `FTSE100`);
+const ftse100 = new Tool('indices', `FTSE100`);
 ftse100.makePrices();
 const google = new Tool('stocks', `Google`);
 google.makePrices();
@@ -868,3 +907,6 @@ const weights = [10, 25, 25, 10, 10, 5, 5, 5, 5];
 const myPortfolio = new Portfolio(tools, weights);
 myPortfolio.makePricesWithoutDate();
 myPortfolio.testPortfolio();
+    
+
+    
